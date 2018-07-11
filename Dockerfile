@@ -1,0 +1,9 @@
+FROM bahmni/bahmni_centos67
+ARG container_name
+ARG erp_port
+RUN echo -e "[bahmni] \nname=Bahmni development repository for RHEL/CentOS 6\nbaseurl=http://dl.bintray.com/bahmni/rpm/\nenabled=1\ngpgcheck=0\n" > /etc/yum.repos.d/bahmni.repo ; yum -y install ca-certificates openssl nss ; echo "INSTALLING PYTHON" ; yum clean all ; rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm ; yum install -y python-pip ; pip install --upgrade pip ; pip install --upgrade setuptools ; echo "INSTALLING SUPPORT PACKAGES" ; yum install -y sudo git openssh-server openssh-clients tar wget yum-plugin-ovl ; echo "INSTALLING BAHMNI" ; yum install -y bahmni-installer-0.90-308 ; yum install -y yum install -y ftp://195.220.108.108/linux/Mandriva/devel/cooker/x86_64/media/contrib/release/mx-1.4.5-1-mdv2012.0.x86_64.rpm ; yum clean all ; echo -e "selinux_state: disabled \npostgres_version: 9.2 \ntimezone: Africa/Maseru \nimplementation_name: default \nbahmni_support_group: bahmni_support \nbahmni_support_user: bahmni_support \nbahmni_password_hash: $1$IW4OvlrH$Kui/55oif8W3VZIrnX6jL1 \nbahmni_repo_url: http://repo.mybahmni.org/rpm/bahmni/ \nopenerp_url: http://127.0.0.1:8069 \ndocker: yes " > /etc/bahmni-installer/setup.yml ; sed -i "1,100 s/^/#/" /opt/bahmni-installer/bahmni-playbooks/roles/dcm4chee-oracle-java/tasks/main.yml
+ADD local /etc/bahmni-installer/local
+RUN bahmni -ilocal install
+ADD db_startup_script.sh /tmp/db_startup_script.sh
+RUN chmod a+x /tmp/db_startup_script.sh
+ENTRYPOINT /tmp/db_startup_script.sh ; bahmni -ilocal start ; service bahmni-lab restart ; sh /tmp/db_startup_script.sh ; /bin/bash
