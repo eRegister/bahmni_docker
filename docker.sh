@@ -8,6 +8,8 @@ export erp_port=8069
 export debug_port=8000
 export image_name=omrsregrepo/bahmni_centosls:69_230718
 
+# check for files in current directory (backup.sql, local, blabla - if not get from git, else stop)
+
 if sudo docker ps | grep ${container_name}; then
    sudo docker stop "${container_name}" | sudo xargs docker rm
 else

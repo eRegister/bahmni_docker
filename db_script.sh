@@ -12,7 +12,14 @@ sudo service openmrs stop
 sudo service bahmni-reports stop
 sudo service mysqld stop
 sudo rsync -avr -o -g /var/lib/mysql /$container_name
-service mysqld start
+sudo service mysqld start
+
+###############
+# Restore DB
+
+sudo mysql -uroot -ppassword -e "source backup.sql"
+
+##################################
 service openmrs start
 service bahmni-reports start
 

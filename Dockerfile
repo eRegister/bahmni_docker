@@ -25,4 +25,8 @@ ARG bind_mount_dest
 ARG mighty
 ADD db_script.sh /tmp/db_script.sh
 RUN chmod a+x /tmp/db_script.sh
-ENTRYPOINT sh /tmp/db_script.sh ; bahmni -ilocal start ; /bin/bash
+# add backup
+ADD backup.sql /tmp/backup.sql
+RUN sh /tmp/db_script.sh
+
+ENTRYPOINT bahmni -ilocal start ; /bin/bash
