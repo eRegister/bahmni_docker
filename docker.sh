@@ -6,7 +6,7 @@ export https_port=443
 export http_port=81
 export erp_port=8069
 export debug_port=8000
-export image_name=omrsregrepo/bahmni_centosls:69_010818
+export image_name=omrsregrepo/bahmni_centosls:69_060818
 
 # check bind_mount_src value
 
