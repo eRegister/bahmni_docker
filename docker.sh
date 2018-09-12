@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 export container_name=openmrseregister
+# update bind_mount_src
 export bind_mount_src=Users/mac/Documents/Spane/eregisterDev/host
 export bind_mount_dest=development
 export https_port=443
@@ -7,8 +8,6 @@ export http_port=81
 export erp_port=8069
 export debug_port=8000
 export image_name=omrsregrepo/bahmni_centosls:69_060818
-
-# check bind_mount_src value
 
 if sudo docker ps | grep ${container_name}; then
    sudo docker stop "${container_name}" | sudo xargs docker rm
