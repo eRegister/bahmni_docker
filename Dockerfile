@@ -1,4 +1,4 @@
-FROM omrsregrepo/bahmni_base:69_260718
+FROM omrsregrepo/bahmni_base_092:13112020
 # bahmni updates happen here
 ARG container_name
 ARG bind_mount_dest
