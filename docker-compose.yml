@@ -1,17 +1,19 @@
 version: "3"
 services:
   emr-service:
-    image: jrei/systemd-centos:7
+    image: omrsregrepo/bahmni_092:18112020
     restart: unless-stopped
+    privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    command: [/usr/sbin/init, "--privileged"]
+    command: [/usr/sbin/init, /bin/bash, "--privileged"]
     ports:
       - "443:443"
       - "80:80"
       - "8000:8000"
   erp-service:
-    image: jrei/systemd-centos:7
+    image: omrsregrepo/bahmni_092:18112020
+    privileged: true
     ports:
       - "8069:8069"
     restart: unless-stopped
