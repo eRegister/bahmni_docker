@@ -1,0 +1,16 @@
+version: "3"
+services:
+  emr-service:
+    build: omrsregrepo/bahmni_092:18112020
+    restart: unless-stopped
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    command: ["/bin/bash", "--privileged"]
+    ports:
+      - "443:443"
+      - "80:80"
+      - "8069:8069"
+      - "8000:8000"
+  erp-service:
+    image: omrsregrepo/bahmni_092:18112020
+    restart: unless-stopped
