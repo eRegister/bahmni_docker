@@ -1,7 +1,7 @@
 version: "3"
 services:
   emr-service:
-    image: omrsregrepo/bahmni_092:18112020
+    image: omrsregrepo/bahmni_092_emr:02122020
     restart: unless-stopped
     privileged: true
     volumes:
@@ -12,7 +12,7 @@ services:
       - "80:80"
       - "8000:8000"
   erp-service:
-    image: omrsregrepo/bahmni_092:18112020
+    image: omrsregrepo/bahmni_092_erp:02122020
     privileged: true
     ports:
       - "8069:8069"
