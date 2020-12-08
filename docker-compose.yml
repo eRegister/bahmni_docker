@@ -4,9 +4,6 @@ services:
     image: omrsregrepo/bahmni_092_emr:02122020
     restart: unless-stopped
     privileged: true
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    command: [/usr/sbin/init, /bin/bash, "--privileged"]
     ports:
       - "443:443"
       - "80:80"
@@ -17,3 +14,4 @@ services:
     ports:
       - "8069:8069"
     restart: unless-stopped
+##waiting for ntate Mphatsi
