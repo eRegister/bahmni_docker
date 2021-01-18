@@ -12,10 +12,6 @@ spec:
       labels:
         component: erp
     spec:
-      volumes:
-        - name: erp-storage
-          persistentVolumeClaim:
-            claimName: database-persistent-volume-claim
       containers:
         - name: eregister-erp
           image: omrsregrepo/bahmni_092_erp:15012021
