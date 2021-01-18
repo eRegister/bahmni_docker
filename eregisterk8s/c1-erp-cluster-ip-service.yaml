@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: erp-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: erp
+  ports:
+    - port: 8069
+      targetPort: 8069

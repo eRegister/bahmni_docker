@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eregister-emr-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: emr
+  template:
+    metadata:
+      labels:
+        component: emr
+    spec:
+      containers:
+        - name: eregister-emr
+          image: omrsregrepo/bahmni_092_emr:15012021
+          ports:
+            - containerPort: 443
+            - containerPort: 80
+            - containerPort: 8000
+            - containerPort: 8050
