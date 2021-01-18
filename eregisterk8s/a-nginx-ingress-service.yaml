@@ -5,9 +5,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
-    certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - http:
@@ -16,7 +14,3 @@ spec:
             backend:
               serviceName: emr-cluster-ip-service
               servicePort: 80
-          - path: /
-            backend:
-              serviceName: erp-cluster-ip-service
-              servicePort: 8069
