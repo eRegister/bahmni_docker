@@ -12,8 +12,15 @@ spec:
       labels:
         component: erp
     spec:
+      volumes:
+        - name: erp-storage
+          persistentVolumeClaim:
+            claimName: erp-persistent-volume-claim
       containers:
         - name: eregister-erp
           image: omrsregrepo/bahmni_092_erp:15012021
+          securityContext:
+            privileged: true
+          command: [/usr/sbin/init, /bin/bash, "--privileged"]
           ports:
             - containerPort: 8069
