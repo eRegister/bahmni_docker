@@ -18,7 +18,7 @@ spec:
             claimName: emr-persistent-volume-claim
       containers:
         - name: eregister-emr
-          image: omrsregrepo/bahmni_092_emr:15012021
+          image: omrsregrepo/bahmni_092_emr:18012021
           securityContext:
             privileged: true
           command: [/usr/sbin/init, /bin/bash, "--privileged"]
