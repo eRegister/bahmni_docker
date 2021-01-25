@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eregister-emr-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: emr
+  template:
+    metadata:
+      labels:
+        component: emr
+    spec:
+      containers:
+        - name: eregister-emr
+          image: omrsregrepo/bahmni_092_emr:18012021
+          securityContext:
+            privileged: true
+          command: [/usr/sbin/init, /bin/bash, "--privileged"]
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+            - containerPort: 8000
+            - containerPort: 8050

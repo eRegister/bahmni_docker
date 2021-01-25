@@ -7,5 +7,7 @@ spec:
   selector:
     component: erp
   ports:
-    - port: 8069
+    - name: http
+      protocol: TCP
+      port: 8069
       targetPort: 8069
