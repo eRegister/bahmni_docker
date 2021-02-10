@@ -1,7 +1,7 @@
 version: "3"
 services:
   emr-service:
-    image: omrsregrepo/bahmni_092_emr:08122020
+    image: omrsregrepo/bahmni_092_emr:15012021
     restart: unless-stopped
     privileged: true
     ports:
@@ -10,11 +10,11 @@ services:
       - "8000:8000"
       - "8050:8050" #openmrs ws and rest api live here
     networks:
-            hmis_network:
-                ipv4_address: 172.27.0.3
-                
+      hmis_network:
+        ipv4_address: 172.27.0.3
+
   erp-service:
-    image: omrsregrepo/bahmni_092_erp:08122020
+    image: omrsregrepo/bahmni_092_erp:15012021
     privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -22,13 +22,13 @@ services:
     ports:
       - "8069:8069" #odoo lives here
     networks:
-            hmis_network:
-                ipv4_address: 172.27.0.2
+      hmis_network:
+        ipv4_address: 172.27.0.2
     restart: unless-stopped
-    
+
 networks:
-    hmis_network:
-        ipam:
-            driver: default
-            config:
-                - subnet: 172.27.0.0/16
+  hmis_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.27.0.0/16
