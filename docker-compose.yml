@@ -1,12 +1,12 @@
 version: "3"
 services:
   emr-service:
-    image: omrsregrepo/bahmni_092_emr:15012021
+    image: omrsregrepo/bahmni_092_emr:01032021
     restart: unless-stopped
     privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - /development:/development
+      - /development_emr:/development
     command: [/usr/sbin/init, /bin/bash, "--privileged"]
     ports:
       - "443:443" #https
@@ -18,10 +18,11 @@ services:
         ipv4_address: 172.27.0.3
 
   erp-service:
-    image: omrsregrepo/bahmni_092_erp:15012021
+    image: omrsregrepo/bahmni_092_erp:01032021
     privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /development_erp:/development
     command: [/usr/sbin/init, /bin/bash, "--privileged"]
     ports:
       - "8069:8069" #odoo lives here
