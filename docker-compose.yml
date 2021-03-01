@@ -6,7 +6,7 @@ services:
     privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - /development_emr:/development
+      - /development_emr:/development_emr
     command: [/usr/sbin/init, /bin/bash, "--privileged"]
     ports:
       - "443:443" #https
@@ -22,7 +22,7 @@ services:
     privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - /development_erp:/development
+      - /development_erp:/development_erp
     command: [/usr/sbin/init, /bin/bash, "--privileged"]
     ports:
       - "8069:8069" #odoo lives here
