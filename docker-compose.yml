@@ -1,7 +1,7 @@
 version: "3"
 services:
   emr-service:
-    image: omrsregrepo/bahmni_092_emr:15012021
+    image: omrsregrepo/bahmni_092_emr:21042021
     restart: unless-stopped
     privileged: true
     volumes:
@@ -18,7 +18,7 @@ services:
         ipv4_address: 172.27.0.3
 
   erp-service:
-    image: omrsregrepo/bahmni_092_erp:15012021
+    image: omrsregrepo/bahmni_092_erp:21042021
     privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
