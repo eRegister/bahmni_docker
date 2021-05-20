@@ -1,7 +1,7 @@
 version: "3"
 services:
   emr-service:
-    image: omrsregrepo/bahmni_092_emr:01032021
+    image: omrsregrepo/bahmni_092_emr:20052021
     restart: unless-stopped 
     privileged: true
     volumes:
@@ -12,14 +12,16 @@ services:
       - "443:443" #https
       - "80:80" #http
       - "8000:8000"
+      - "33062:3306"
       - "8050:8050" #openmrs ws and rest api live here
     networks:
       hmis_network:
         ipv4_address: 172.27.0.3
 
   erp-service:
-    image: omrsregrepo/bahmni_092_erp:01032021                                                                                                                                                                                                                                                                  
+    image: omrsregrepo/bahmni_092_erp:20052021                                                                                                                                                                                                                                                                  
     privileged: true
+    restart: always
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /development_erp:/development
