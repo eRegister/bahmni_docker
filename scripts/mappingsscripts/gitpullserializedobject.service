@@ -1,0 +1,19 @@
+[Unit]
+Description=Serialized Onject continuous deployment
+After=docker.service
+After=mysqlbootstrap.service
+After=dockerbootstrap.service
+
+
+[Service]
+WorkingDirectory=/development/openmrs_reporting_release
+ExecStart=/development/openmrs_reporting_release/gitpull_serial.sh
+
+
+User=openmrs
+RestartSec=10
+Restart=always
+
+
+[Install]
+WantedBy=default.target

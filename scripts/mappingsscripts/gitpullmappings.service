@@ -1,0 +1,20 @@
+[Unit]
+Description=Mappings continuous deployment
+After=docker.service
+After=mysqlbootstrap.service
+After=dockerbootstrap.service
+
+
+[Service]
+WorkingDirectory=/development/dhisconnector_mappings
+ExecStart=/development/dhisconnector_mappings/gitpull_mappings.sh
+
+
+User=openmrs
+RestartSec=10
+Restart=always
+
+
+[Install]
+WantedBy=default.target
+

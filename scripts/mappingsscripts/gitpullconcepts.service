@@ -1,0 +1,19 @@
+[Unit]
+Description=Bahmni continuous deployment
+After=docker.service
+After=mysqlbootstrap.service
+After=dockerbootstrap.service
+
+
+[Service]
+WorkingDirectory=/development/openmrs_concepts_release
+ExecStart=/development/openmrs_concepts_release/gitpull_concepts.sh
+
+
+User=openmrs
+RestartSec=10
+Restart=always
+
+
+[Install]
+WantedBy=default.target

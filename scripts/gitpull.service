@@ -1,0 +1,20 @@
+[Unit]
+Description=Bahmni continuous deployment
+After=docker.service
+After=mysqlbootstrap.service
+After=dockerbootstrap.service
+
+
+[Service]
+WorkingDirectory=/development/bahmni_config_release
+ExecStart=/development/bahmni_config_release/gitpull.sh
+StandardOutput=file:/var/log/gitpull.log
+StandardOutput=file:/var/log/gitpullbugs.log
+
+User=openmrs
+RestartSec=10
+Restart=always
+
+
+[Install]
+WantedBy=default.target
