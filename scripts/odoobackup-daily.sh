@@ -12,6 +12,6 @@ docker exec -it bahmni_docker_erp-service_1 pg_dump -U odoo odoo | gzip > "$full
 echo "creating today's container snapshot" >> "$logfile"
 docker commit bahmni_docker_erp-service_1 omrsregrepo/bahmni_092_erp:$today
 echo "done creating image >> "$logfile"
-echo "operation finished at $(date +'%d-%m-%Y %H:%M:%S')" >> "$logfile"
+echo "operation finished at $(date +'%d-%m-%Y %H:%M:%S') >> "$logfile"
 echo "*****************" >> "$logfile"
 exit 0
