@@ -33,6 +33,21 @@ services:
         ipv4_address: 172.27.0.2
     restart: unless-stopped
 
+  rpt-service:
+    image: omrsregrepo/bahmni_092_emr:20052021                                                                                                                                                                                                                                                                  
+    privileged: true
+    restart: always
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /development_erp:/development
+    command: [/usr/sbin/init, /bin/bash, "--privileged"]
+    ports:
+      - "8051:8051"
+    networks:
+      hmis_network:
+        ipv4_address: 172.27.0.4
+    restart: unless-stopped
+
 networks:
   hmis_network:
     ipam:
