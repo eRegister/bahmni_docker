@@ -1,7 +1,7 @@
 version: "3"
 services:
   emr-service:
-    image: omrsregrepo/bahmni_092_emr:20052021
+    image: omrsregrepo/bahmni_092_emr:13072020
     restart: unless-stopped 
     privileged: true
     volumes:
@@ -19,7 +19,7 @@ services:
         ipv4_address: 172.27.0.3
 
   erp-service:
-    image: omrsregrepo/bahmni_092_erp:20052021                                                                                                                                                                                                                                                                  
+    image: omrsregrepo/bahmni_092_erp:13072020                                                                                                                                                                                                                                                                  
     privileged: true
     restart: always
     volumes:
@@ -31,22 +31,6 @@ services:
     networks:
       hmis_network:
         ipv4_address: 172.27.0.2
-    restart: unless-stopped
-
-  rpt-service:
-    image: omrsregrepo/bahmni_092_emr:20052021                                                                                                                                                                                                                                                                  
-    privileged: true
-    restart: always
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - /development_erp:/development
-    command: [/usr/sbin/init, /bin/bash, "--privileged"]
-    ports:
-      - "8051:8051"
-    networks:
-      hmis_network:
-        ipv4_address: 172.27.0.4
-    restart: unless-stopped
 
 networks:
   hmis_network:
