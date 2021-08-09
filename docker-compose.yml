@@ -5,6 +5,7 @@ services:
     restart: unless-stopped 
     privileged: true
     volumes:
+      - /development_emr:/development
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /development_emr/bahmni_config092:/development/bahmni_config092
       - /development_emr/bahmniapps092beta:/development/bahmniapps092beta
