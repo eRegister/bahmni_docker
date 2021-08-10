@@ -7,7 +7,7 @@ services:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /development_emr/bahmni_config092:/development/bahmni_config092
-      - /development_emr/bahmniapps092beta:/development/bahmniapps092beta
+      - /development_emr/bahmniapps_release:/development/bahmniapps_release
       - /development_emr/dhisconnector_mappings:/development/dhisconnector_mappings
       - /development_emr/eregister_concepts_release:/development/eregister_concepts_release
       - /development_emr/openmrs_reporting_release:/development/openmrs_reporting_release
