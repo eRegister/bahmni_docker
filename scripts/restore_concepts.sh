@@ -1,6 +1,6 @@
 #!/bin/bash
 user=root
-password=P@$$w0rd
+password=P@ssw0rd
 db=openmrs
 container=bahmni_docker_emr-service_1
 concept_backup=omrs_concept_dictionary.sql
