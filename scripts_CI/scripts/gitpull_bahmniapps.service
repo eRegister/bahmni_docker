@@ -1,0 +1,20 @@
+[Unit]
+Description=Bahmni Apps continuous deployment
+After=docker.service
+After=mysqlbootstrap.service
+After=dockerbootstrap.service
+
+
+[Service]
+WorkingDirectory=/development/bahmni_apps_release
+ExecStart=/development/bahmni_apps_release/gitpull_bahmniapps.sh
+StandardOutput=file:/var/log/gitpull_bahmniapps.log
+StandardOutput=file:/var/log/gitpull_bahmniappsbugs.log
+
+User=administrator
+RestartSec=10
+Restart=always
+
+
+[Install]
+WantedBy=default.target
