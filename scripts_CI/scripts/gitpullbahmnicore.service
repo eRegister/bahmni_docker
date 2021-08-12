@@ -1,0 +1,19 @@
+[Unit]
+Description=Bahmni continuous deployment
+After=docker.service
+After=mysqlbootstrap.service
+After=dockerbootstrap.service
+
+
+[Service]
+WorkingDirectory=/development/openmrs-module-bahmnicore-release
+ExecStart=/development/openmrs-module-bahmnicore-release/gitpull_bahmnicore.sh
+
+
+User=openmrs
+RestartSec=10
+Restart=always
+
+
+[Install]
+WantedBy=default.target

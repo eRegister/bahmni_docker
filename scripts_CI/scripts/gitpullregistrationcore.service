@@ -1,0 +1,19 @@
+[Unit]
+Description=Bahmni continuous deployment
+After=docker.service
+After=mysqlbootstrap.service
+After=dockerbootstrap.service
+
+
+[Service]
+WorkingDirectory=/development/openmrs-module-registrationcore-release
+ExecStart=/development/openmrs-module-registrationcore-release/gitpull_registrationcore.sh
+
+
+User=openmrs
+RestartSec=10
+Restart=always
+
+
+[Install]
+WantedBy=default.target
