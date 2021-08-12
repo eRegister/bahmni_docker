@@ -6,8 +6,8 @@ After=dockerbootstrap.service
 
 
 [Service]
-WorkingDirectory=/development/eregister_concepts_release
-ExecStart=/development/eregister_concepts_release/restore_concepts.sh
+WorkingDirectory=/development_emr/eregister_concepts_release
+ExecStart=/development_emr/eregister_concepts_release/restore_concepts.sh
 StandardOutput=file:/var/log/restore_concepts.log
 StandardOutput=file:/var/log/restore_conceptsbugs.log
 

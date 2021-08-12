@@ -6,8 +6,8 @@ After=dockerbootstrap.service
 
 
 [Service]
-WorkingDirectory=/development/openmrs-module-registrationcore-release
-ExecStart=/development/openmrs-module-registrationcore-release/gitpull_registrationcore.sh
+WorkingDirectory=/development_emr/openmrs-module-registrationcore-release
+ExecStart=/development_emr/openmrs-module-registrationcore-release/gitpull_registrationcore.sh
 
 
 User=openmrs
