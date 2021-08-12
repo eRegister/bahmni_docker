@@ -6,8 +6,8 @@ After=dockerbootstrap.service
 
 
 [Service]
-WorkingDirectory=/development/openmrs-module-xdssender-release
-ExecStart=/development/openmrs-module-xdssender-release/gitpull_xdssender.sh
+WorkingDirectory=/development_emr/openmrs-module-xdssender-release
+ExecStart=/development_emr/openmrs-module-xdssender-release/gitpull_xdssender.sh
 
 
 User=openmrs
