@@ -2,4 +2,4 @@
 
 git fetch --all
 
-git pull origin bahmnicore_build
+git pull origin bahmnicore_92_build
