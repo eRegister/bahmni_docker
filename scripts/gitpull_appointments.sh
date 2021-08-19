@@ -2,4 +2,4 @@
 
 git fetch --all
 
-git pull origin appointments_92_build
+git pull origin appointments_build
