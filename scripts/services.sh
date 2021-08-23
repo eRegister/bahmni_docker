@@ -44,6 +44,6 @@
  sudo systemctl start gitpullbahmnicore.service
  sudo systemctl start gitpullregistrationcore.service
  sudo systemctl start gitpullxdssender.service
- #sudo systemctl start modules.service
+ sudo systemctl start modules.service
 
 
