@@ -1,8 +1,8 @@
 [Unit]
 Description=Bahmni continuous deployment
 After=docker.service
-After=mysqlbootstrap.service
-After=dockerbootstrap.service
+#After=mysqlbootstrap.service
+#After=dockerbootstrap.service
 
 
 [Service]
@@ -10,7 +10,7 @@ After=dockerbootstrap.service
 ExecStart=/usr/local/bin/modules.sh
 
 
-User=openmrs
+#User=openmrs
 RestartSec=10
 Restart=always
 

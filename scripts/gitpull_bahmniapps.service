@@ -1,8 +1,8 @@
 [Unit]
 Description=Bahmni Apps continuous deployment
 After=docker.service
-After=mysqlbootstrap.service
-After=dockerbootstrap.service
+#After=mysqlbootstrap.service
+#After=dockerbootstrap.service
 
 
 [Service]
@@ -11,7 +11,7 @@ ExecStart=/development_emr/bahmniapps_release/gitpull_bahmniapps.sh
 StandardOutput=file:/var/log/gitpull_bahmniapps.log
 StandardOutput=file:/var/log/gitpull_bahmniappsbugs.log
 
-User=openmrs
+#User=openmrs
 RestartSec=10
 Restart=always
 

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 git fetch --all
-git pull origin autobuildmaster
+git pull origin bahmniapps_92build
