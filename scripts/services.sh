@@ -1,6 +1,40 @@
 #!/bin/bash
 # Proper header for a Bash script.
- 
+# comment and uncomment set -v for debugging
+# set -v
+# mounting the volume if docker-compose skipped it for whatever reason
+# ke na le ho bona e hana i don't know why
+
+if [ ! -d "/development_emr/" ]
+    then
+    docker run -d -v /development_emr:/development bahmni_docker_emr-service_1
+fi
+
+if [ ! -d "/development_emr/openmrs-module-*" ] || [ ! -d "/development_emr/bahmni*" ] 
+    then
+    mkdir -p /development_emr/bahmni_config_release
+    echo "bahmni_config_release folder created"
+    mkdir -p /development_emr/bahmniapps_release
+    echo "bahmni_release folder created"
+    mkdir -p /development_emr/dhisconnector_mappings
+    echo "dhisconnector folder created"
+    mkdir -p /development_emr/eregister_concepts_release
+    echo "eregister_concepts_release folder created"
+    mkdir -p /development_emr/openmrs_reporting_release
+    echo "openmrs_reporting_release folder created"
+    mkdir -p /development_emr/openmrs-module-appointments-release
+    echo "openmrs-module-appointments-release folder created"
+    mkdir -p /development_emr/openmrs-module-xdssender-release
+    echo "openmrs-module-xdssender-release folder created"
+    mkdir -p /development_emr/openmrs-module-bahmnicore-release
+    echo "openmrs-module-bahmnicore-release folder created"
+    mkdir -p /development_emr/openmrs-module-registrationcore-release
+    echo "openmrs-module-registrationcore-release folder created"
+    
+fi
+#---------------------------------------------------------------------#
+
+
  #Initialize git in all the persistant docker volumes and link the local repo with remote repo
  
  cd /development_emr/bahmni_config_release/
@@ -45,6 +79,9 @@
  sudo git remote add origin https://github.com/eRegister/openmrs-module-outgoingmessageexceptions-release.git
  
 #Pull from the remote eRegister repo's and creates services for automated deployement 
+  
+# getting back to original folder
+cd /home/openmrs/bahmni_docker/scripts
 
  sudo cp gitpull_bahmniconfig.service /etc/systemd/system/
  sudo cp gitpull_bahmniconfig.sh /development_emr/bahmni_config_release/
