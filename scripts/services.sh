@@ -97,14 +97,19 @@
  sudo chmod 664 /etc/systemd/system/gitpull_outgoingmessage.service
  
  
- 
- 
  #Copy omod files to container OpenMRS operating modules (opt/OpenMRS/modules)
  
  sudo cp modules.service /etc/systemd/system/
  sudo cp modules.sh /usr/local/bin
  sudo chmod  +x /usr/local/bin/modules.sh
  sudo chmod 664 /etc/systemd/system/modules.service
+ 
+ #Copy bacnkups scripts to  user binaries directory (/usr/local/bin)
+ 
+ sudo cp serilizedobject.sh /usr/local/bin/
+ sudo cp concepts_restore.sh /usr/local/bin/
+ sudo chmod +x /usr/local/bin/serilizedobject.sh
+ sudo chmod +x /usr/local/bin/concepts_restore.sh
  
  #Loading system daemon and enabling services
  
