@@ -5,8 +5,8 @@ After=docker.service
 
 
 [Service]
-
-ExecStart=/usr/local/bin/modules.sh
+WorkingDirectory=/development_emr/openmrs-module-xdssender-release
+ExecStart=/development_emr/openmrs-module-xdssender-release/gitpull_xdssender.sh
 
 
 #User=openmrs

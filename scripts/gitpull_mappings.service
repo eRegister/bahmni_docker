@@ -1,0 +1,19 @@
+[Unit]
+Description=Mappings continuous deployment
+After=docker.service
+
+
+
+[Service]
+WorkingDirectory=/development/dhisconnector_mappings
+ExecStart=/development/dhisconnector_mappings/gitpull_mappings.sh
+
+
+User=openmrs
+RestartSec=10
+Restart=always
+
+
+[Install]
+WantedBy=default.target
+

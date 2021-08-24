@@ -1,0 +1,18 @@
+[Unit]
+Description=Serialized Onject continuous deployment
+After=docker.service
+
+
+
+[Service]
+WorkingDirectory=/development/openmrs_reporting_release
+ExecStart=/development/openmrs_reporting_release/gitpull_serializedobject.sh
+
+
+User=openmrs
+RestartSec=10
+Restart=always
+
+
+[Install]
+WantedBy=default.target

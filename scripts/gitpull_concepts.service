@@ -1,0 +1,19 @@
+[Unit]
+Description=Bahmni continuous deployment [For Drug Concepts]
+After=docker.service
+
+
+
+[Service]
+WorkingDirectory=/development_emr/eregister_concepts_release
+ExecStart=/development_emr/eregister_concepts_release/gitpull_concepts.sh
+StandardOutput=file:/var/log/restore_concepts.log
+StandardOutput=file:/var/log/restore_conceptsbugs.log
+
+User=administrator
+RestartSec=10
+Restart=always
+
+
+[Install]
+WantedBy=default.target
