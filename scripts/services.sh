@@ -3,9 +3,9 @@
  
  #Initialize git in all the persistant docker volumes and link the local repo with remote repo
  
- cd /development_emr/bahmni_config092/
+ cd /development_emr/bahmni_config_release/
  sudo git init
- sudo git remote add origin https://github.com/eRegister/bahmni_config092.git
+ sudo git remote add origin https://github.com/eRegister/bahmni_config_release.git
 
  cd /development_emr/openmrs-module-bahmnicore-release/
  sudo git init
@@ -47,8 +47,8 @@
 #Pull from the remote eRegister repo's and creates services for automated deployement 
 
  sudo cp gitpull_bahmniconfig.service /etc/systemd/system/
- sudo cp gitpull_bahmniconfig.sh /development_emr/bahmni_config092/
- sudo chmod  +x /development_emr/bahmni_config092/gitpull_bahmniconfig.sh
+ sudo cp gitpull_bahmniconfig.sh /development_emr/bahmni_config_release/
+ sudo chmod  +x /development_emr/bahmni_config_release/gitpull_bahmniconfig.sh
  sudo chmod 664 /etc/systemd/system/gitpull_bahmniconfig.service
  
  sudo cp gitpull_bahmniapps.service /etc/systemd/system/
