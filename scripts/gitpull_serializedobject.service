@@ -1,13 +1,12 @@
 [Unit]
 Description=Serialized Onject continuous deployment
 After=docker.service
-After=mysqlbootstrap.service
-After=dockerbootstrap.service
+
 
 
 [Service]
 WorkingDirectory=/development/openmrs_reporting_release
-ExecStart=/development/openmrs_reporting_release/gitpull_serial.sh
+ExecStart=/development/openmrs_reporting_release/gitpull_serializedobject.sh
 
 
 User=openmrs

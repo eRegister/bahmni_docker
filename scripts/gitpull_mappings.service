@@ -1,8 +1,7 @@
 [Unit]
 Description=Mappings continuous deployment
 After=docker.service
-After=mysqlbootstrap.service
-After=dockerbootstrap.service
+
 
 
 [Service]
