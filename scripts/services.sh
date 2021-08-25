@@ -39,7 +39,7 @@ fi
  
  cd /development_emr/bahmni_config_release/
  sudo git init
- sudo git remote add origin https://github.com/eRegister/bahmni_config_release.git
+ sudo git remote add https://github.com/eRegister/bahmni_config092.git
 
  cd /development_emr/openmrs-module-bahmnicore-release/
  sudo git init
