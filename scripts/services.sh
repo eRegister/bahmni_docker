@@ -148,6 +148,19 @@ cd /home/openmrs/bahmni_docker/scripts
  sudo chmod +x /usr/local/bin/serilizedobject.sh
  sudo chmod +x /usr/local/bin/concepts_restore.sh
  
+ #Changing ownership to openmrs
+ sudo chown openmrs:openmrs gitpull_bahmniconfig.service
+ sudo chown openmrs:openmrs gitpull_bahmniapps.service
+ sudo chown openmrs:openmrs gitpull_bahmnicore.service
+ sudo chown openmrs:openmrs gitpull_registrationcore.service
+ sudo chown openmrs:openmrs gitpull_xdssender.service
+ sudo chown openmrs:openmrs modules.service
+ sudo chown openmrs:openmrs gitpull_appointments.service
+ sudo chown openmrs:openmrs gitpull_mappings.service
+ sudo chown openmrs:openmrs gitpull_serializedobject.service
+ sudo chown openmrs:openmrs gitpull_concepts.service
+ sudo chown openmrs:openmrs gitpull_outgoingmessage.service
+ 
  #Loading system daemon and enabling services
  
  sudo systemctl daemon-reload
