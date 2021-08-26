@@ -5,8 +5,8 @@ After=docker.service
 
 
 [Service]
-WorkingDirectory=/development_emr/openmrs-modules-outgoingmessageexception-release/
-ExecStart=/development/openmrs-modules-outgoingmessageexception-release/gitpull_outgoingmessage.sh
+WorkingDirectory=/development_emr/openmrs-module-outgoingmessageexception-release/
+ExecStart=/development_emr/openmrs-module-outgoingmessageexception-release/gitpull_outgoingmessage.sh
 
 
 User=openmrs
