@@ -60,7 +60,7 @@ fi
  sudo git remote add origin https://github.com/eRegister/bahmniapps_release.git
  
  cd /development_emr/openmrs-module-appointments-release/
- git git init
+ sudo git init
  sudo git remote add origin https://github.com/eRegister/openmrs-module-appointments-release.git
  
  cd /development_emr/dhisconnector_mappings/
@@ -123,7 +123,7 @@ cd /home/openmrs/bahmni_docker/scripts
  
  sudo cp gitpull_mappings.service /etc/systemd/system/
  sudo cp gitpull_mappings.sh /development_emr/dhisconnector_mappings/
- sudo chmodod +x /development_emr/dhisconnector_mappings/gitpull_mappings.sh
+ sudo chmod +x /development_emr/dhisconnector_mappings/gitpull_mappings.sh
  sudo chmod 664 /etc/systemd/system/gitpull_mappings.service
  
  sudo cp gitpull_serializedobject.service /etc/systemd/system/
