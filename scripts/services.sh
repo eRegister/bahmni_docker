@@ -30,6 +30,8 @@ if [ ! -d "/development_emr/openmrs-module-*" ] || [ ! -d "/development_emr/bahm
     echo "openmrs-module-bahmnicore-release folder created"
     mkdir -p /development_emr/openmrs-module-registrationcore-release
     echo "openmrs-module-registrationcore-release folder created"
+	mkdir -p /development_emr/openmrs-module-dhisconnector-release
+    echo "openmrs-module-registrationcore-release folder created"
     
 fi
 #---------------------------------------------------------------------#
@@ -77,6 +79,12 @@ fi
  cd /development_emr/openmrs-module-outgoingmessageexception-release/
  sudo git init
  sudo git remote add origin https://github.com/eRegister/openmrs-module-outgoingmessageexceptions-release.git
+ 
+ cd /development_emr/openmrs-module-dhisconnector-release/
+ sudo git init
+ sudo git remote add origin https://github.com/eRegister/openmrs-module-dhisconnector-release.git
+ 
+ 
  
 #Pull from the remote eRegister repo's and creates services for automated deployement 
   
@@ -133,6 +141,11 @@ cd /home/openmrs/bahmni_docker/scripts
  sudo chmod +x /development_emr/openmrs-module-outgoingmessageexception-release/gitpull_outgoingmessage.sh
  sudo chmod 664 /etc/systemd/system/gitpull_outgoingmessage.service
  
+ sudo cp gitpull_dhisconnector.service /etc/systemd/system/
+ sudo cp gitpull_dhisconnector.sh /development_emr/openmrs-module-dhisconnector-release/
+ sudo chmod +x /development_emr/openmrs-module-dhisconnector-release/gitpull_dhisconnector.sh
+ sudo chmod 664 /etc/systemd/system/gitpull_dhisconnector.service
+ 
  
  #Copy omod files to container OpenMRS operating modules (opt/OpenMRS/modules)
  
@@ -163,6 +176,7 @@ cd /home/openmrs/bahmni_docker/scripts
  sudo chown openmrs:openmrs gitpull_serializedobject.service
  sudo chown openmrs:openmrs gitpull_concepts.service
  sudo chown openmrs:openmrs gitpull_outgoingmessage.service
+ sudo chown openmrs:openmrs gitpull_dhisconnector.service
  
  #Loading system daemon and enabling services
  
@@ -178,6 +192,7 @@ cd /home/openmrs/bahmni_docker/scripts
  sudo systemctl enable gitpull_serializedobject.service
  sudo systemctl enable gitpull_concepts.service
  sudo systemctl enable gitpull_outgoingmessage.service
+ sudo systemctl enable gitpull_dhisconnector.service
  
  #Starting services
 
@@ -192,6 +207,7 @@ cd /home/openmrs/bahmni_docker/scripts
  sudo systemctl start gitpull_serializedobject.service
  sudo systemctl start gitpull_concepts.service
  sudo systemctl start gitpull_outgoingmessage.service
+ sudo systemctl start gitpull_dhisconnector.service
 
  
  #All files from git should be available in all the persistant volumes
