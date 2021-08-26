@@ -16,6 +16,8 @@ services:
       - /development_emr/openmrs-module-xdssender-release:/development/openmrs-module-xdssender-release
       - /development_emr/openmrs-module-bahmnicore-release:/development/openmrs-module-bahmnicore-release
       - /development_emr/openmrs-module-registrationcore-release:/development/openmrs-module-registrationcore-release
+      - /development_emr/openmrs-module-dhisconnector-release:/development/openmrs-module-dhisconnector-release
+      
     command: [/usr/sbin/init, /bin/bash, "--privileged"]
     ports:
       - "443:443" #https
