@@ -5,8 +5,8 @@ After=docker.service
 
 
 [Service]
-WorkingDirectory=/development/openmrs_reporting_release
-ExecStart=/development/openmrs_reporting_release/gitpull_serializedobject.sh
+WorkingDirectory=/development_emr/openmrs_reporting_release
+ExecStart=/development_emr/openmrs_reporting_release/gitpull_serializedobject.sh
 
 
 User=openmrs
