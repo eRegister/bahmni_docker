@@ -165,18 +165,18 @@ cd /home/openmrs/bahmni_docker/scripts
  
  
  #Changing ownership to openmrs
- sudo chown openmrs:openmrs gitpull_bahmniconfig.service
- sudo chown openmrs:openmrs gitpull_bahmniapps.service
- sudo chown openmrs:openmrs gitpull_bahmnicore.service
- sudo chown openmrs:openmrs gitpull_registrationcore.service
- sudo chown openmrs:openmrs gitpull_xdssender.service
- sudo chown openmrs:openmrs modules.service
- sudo chown openmrs:openmrs gitpull_appointments.service
- sudo chown openmrs:openmrs gitpull_mappings.service
- sudo chown openmrs:openmrs gitpull_serializedobject.service
- sudo chown openmrs:openmrs gitpull_concepts.service
- sudo chown openmrs:openmrs gitpull_outgoingmessage.service
- sudo chown openmrs:openmrs gitpull_dhisconnector.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_bahmniconfig.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_bahmniapps.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_bahmnicore.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_registrationcore.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_xdssender.service
+ sudo chown openmrs:openmrs /etc/systemd/system/modules.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_appointments.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_mappings.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_serializedobject.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_concepts.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_outgoingmessage.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_dhisconnector.service
  
  #Loading system daemon and enabling services
  
