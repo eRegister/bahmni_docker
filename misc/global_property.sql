@@ -1,0 +1,1 @@
+ INSERT INTO global_property (property, property_value, uuid) VALUES ('appointments.followups', '88489023-783b-4021-b7a9-05ca9877bf67,0850f585-be36-4458-b53f-f5520910b343,7ccb96a9-f6bb-426b-ae59-9746ccd8681e,96b7bcbb-a6c9-4648-bce3-c662411dab7b', '26b69d04-1a64-4b06-b5be-63ef37b7cb9c');
