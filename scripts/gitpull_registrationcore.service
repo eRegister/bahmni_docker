@@ -9,7 +9,7 @@ WorkingDirectory=/development_emr/openmrs-module-registrationcore-release
 ExecStart=/development_emr/openmrs-module-registrationcore-release/gitpull_registrationcore.sh
 
 
-#User=openmrs
+User=openmrs
 RestartSec=10
 Restart=always
 

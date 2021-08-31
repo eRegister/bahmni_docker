@@ -9,7 +9,7 @@ WorkingDirectory=/development_emr/openmrs-module-bahmnicore-release
 ExecStart=/development_emr/openmrs-module-bahmnicore-release/gitpull_bahmnicore.sh
 
 
-#User=openmrs
+User=openmrs
 RestartSec=10
 Restart=always
 

@@ -9,7 +9,7 @@ After=docker.service
 ExecStart=/usr/local/bin/modules.sh
 
 
-#User=openmrs
+User=openmrs
 RestartSec=10
 Restart=always
 

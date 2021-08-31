@@ -10,7 +10,7 @@ ExecStart=/development_emr/bahmni_config_release/gitpull_bahmniconfig.sh
 StandardOutput=file:/var/log/gitpull.log
 StandardOutput=file:/var/log/gitpullbugs.log
 
-
+User=openmrs
 RestartSec=10
 Restart=always
 
