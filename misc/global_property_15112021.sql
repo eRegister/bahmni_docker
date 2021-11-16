@@ -1,0 +1,1 @@
+INSERT INTO global_property (property, property_value, uuid) VALUES ('xdssender.exportObsEndpoint', 'http://devbukanals.org/xdsrepositoryrest/openmrs/ws/rest/v1/obs', '4650a9ea-9986-47fa-8c8b-378423537ade');
