@@ -2,4 +2,4 @@
 
 git fetch --all
 
-git pull origin dhisconnector_build
+git pull origin dhisconnector_build_1.55

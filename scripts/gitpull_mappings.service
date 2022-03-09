@@ -5,8 +5,8 @@ After=docker.service
 
 
 [Service]
-WorkingDirectory=/development/dhisconnector_mappings
-ExecStart=/development/dhisconnector_mappings/gitpull_mappings.sh
+WorkingDirectory=/development_emr/dhisconnector_mappings
+ExecStart=/development_emr/dhisconnector_mappings/gitpull_mappings.sh
 
 
 User=openmrs
