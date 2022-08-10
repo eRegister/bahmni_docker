@@ -10,7 +10,7 @@ ExecStart=/development_emr/openmrs-module-dhisconnector-release/gitpull_dhisconn
 
 
 User=openmrs
-RestartSec=10
+RestartSec=86400
 Restart=always
 
 

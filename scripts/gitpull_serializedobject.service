@@ -10,7 +10,7 @@ ExecStart=/development_emr/openmrs_reporting_release/gitpull_serializedobject.sh
 
 
 User=openmrs
-RestartSec=10
+RestartSec=86400
 Restart=always
 
 
