@@ -10,7 +10,7 @@ ExecStart=/usr/local/bin/modules.sh
 
 
 User=openmrs
-RestartSec=10
+RestartSec=86400
 Restart=always
 
 

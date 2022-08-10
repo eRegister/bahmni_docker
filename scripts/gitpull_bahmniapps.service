@@ -10,7 +10,7 @@ StandardOutput=file:/var/log/gitpull_bahmniapps.log
 StandardOutput=file:/var/log/gitpull_bahmniappsbugs.log
 
 User=openmrs
-RestartSec=10
+RestartSec=86400
 Restart=always
 
 
