@@ -10,8 +10,7 @@ StandardOutput=file:/var/log/gitpull_bahmniapps.log
 StandardOutput=file:/var/log/gitpull_bahmniappsbugs.log
 
 User=openmrs
-RestartSec=86400
-Restart=always
+RestartSec=604800
 
 
 [Install]

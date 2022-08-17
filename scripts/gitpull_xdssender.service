@@ -10,8 +10,7 @@ ExecStart=/development_emr/openmrs-module-xdssender-release/gitpull_xdssender.sh
 
 
 User=openmrs
-RestartSec=86400
-Restart=always
+RestartSec=604800
 
 
 [Install]

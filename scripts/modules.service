@@ -10,9 +10,7 @@ ExecStart=/usr/local/bin/modules.sh
 
 
 User=openmrs
-RestartSec=86400
-Restart=always
-
+RestartSec=604800
 
 [Install]
 WantedBy=default.target

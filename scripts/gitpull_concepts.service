@@ -11,8 +11,7 @@ StandardOutput=file:/var/log/restore_concepts.log
 StandardOutput=file:/var/log/restore_conceptsbugs.log
 
 User=openmrs
-RestartSec=86400
-Restart=always
+RestartSec=604800
 
 
 [Install]
