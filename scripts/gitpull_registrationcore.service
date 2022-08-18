@@ -10,8 +10,7 @@ ExecStart=/development_emr/openmrs-module-registrationcore-release/gitpull_regis
 
 
 User=openmrs
-RestartSec=86400
-Restart=always
+RestartSec=604800
 
 
 [Install]

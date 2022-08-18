@@ -10,8 +10,7 @@ ExecStart=/development_emr/openmrs-module-bahmnicore-release/gitpull_bahmnicore.
 
 
 User=openmrs
-RestartSec=86400
-Restart=always
+RestartSec=604800
 
 
 [Install]
