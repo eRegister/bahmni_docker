@@ -1,0 +1,83 @@
+#!/bin/bash
+
+#Author: Tino
+
+#VARIABLES NAGIOS
+OK=0
+WARNING=1
+CRITICAL=2
+UNKNOWN=3
+
+PROGNAME=`basename $0 .sh`
+VERSION="Version 1.1"
+
+print_version() {
+    echo "$VERSION"
+}
+
+print_help() {
+    print_version $PROGNAME $VERSION
+    echo ""
+    echo "$PROGNAME is a Nagios plugin to check a specific service using systemctl."
+    echo ""
+    echo "$PROGNAME -s <service_name>"
+    exit $UNKNOWN
+}
+
+if test -z "$1"
+then
+        print_help
+        exit $CRITICAL
+fi
+
+while test -n "$1"; do
+    case "$1" in
+        --help|-h)
+            print_help
+            exit $UNKNOWN
+            ;;
+        --version|-v)
+            print_version $PROGNAME $VERSION
+            exit $UNKNOWN
+            ;;
+        --service|-s)
+            SERVICE=$2
+            shift
+            ;;
+        *)
+            echo "Unknown argument: $1"
+            print_help
+            exit $UNKNOWN
+            ;;
+        esac
+    shift
+done
+
+EXITCODE=$(systemctl status $SERVICE |grep 'Main PID' | grep status | awk '{print $NF}' | sed 's/)//g' | sed 's/status=//')
+
+if [ "$EXITCODE" == "0/SUCCESS" ] 
+then
+        echo -e "OK: $SERVICE status = 0/success"
+        exit $OK
+
+elif [ "$EXITCODE" == "128" ] 
+then
+	echo -e "CRITICAL: $SERVICE exit code = 128, might be user,permissions or repository problem"
+	exit $CRITICAL
+
+elif [ "$EXITCODE" == "203" ] || [ "$EXITCODE" == "203/EXEC" ]
+then
+	echo -e "CRITICAL: exit code = 203, executable file unaccessible"
+	exit $CRITICAL
+
+else
+	if systemctl is-active $SERVICE >/dev/null 2>&1
+	then
+    		echo -e "OK: $SERVICE is running"
+    		exit $OK
+	else
+    		echo -e "CRITICAL: $SERVICE is not running! status $EXITCODE"
+    		exit $CRITICAL
+	fi
+
+fi

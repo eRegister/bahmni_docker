@@ -1,0 +1,154 @@
+---
+  - name: "Playing with Ansible and Git"
+    hosts: localhost
+    connection: local 
+    tasks:
+
+    #- name: "just execute a ls -lrt command"
+     # shell: "ls -al"
+     # register: "output"
+    #- debug: var=output.stdout_lines
+    
+    - name: "refresh apt"
+      apt: 
+       name: '*'
+       update_cache: yes
+      become: true
+    
+    - name: "install apache2"
+      apt: 
+       name: 
+         - apache2
+       state: latest
+       force: true
+       update_cache: true
+      become: true
+      
+    - name: "install nagios prerequisites"
+      apt: 
+       name: 
+        - autoconf
+        - gcc
+        - libc6
+        - make
+        - wget
+        - unzip
+        - libssl-dev
+        - dc
+        - snmp
+        - gettext
+        - php
+        - libapache2-mod-php
+        - php-mysql
+        - libgd-dev
+        - build-essential
+       state: latest
+       force: true
+       update_cache: true
+      become: true
+    
+    - name: "downoad,unzip"
+      shell: curl -L -O http://github.com/NagiosEnterprises/nagioscore/archive/nagios-4.4.6.tar.gz;tar zxf nagios-4.4.6.tar.gz;      
+      become: false
+      
+    - name: "Configure nagios"
+      shell: chdir=nagioscore-nagios-4.4.6 ./configure --with-httpd-conf=/etc/apache2/sites-enabled --with-mail=/usr/sbin/sendmail
+      register: "output"
+    - debug: var=output.stdout_lines
+      become: false
+     
+      
+    - name: "compile nagios"
+      command: chdir=nagioscore-nagios-4.4.6 make all
+      become: false
+      
+    - name: "Create nagios user and group"
+      shell: chdir=nagioscore-nagios-4.4.6 make install-groups-users;
+      become: true
+      
+    - name: "Make binary files, service files, and sample configuration files"
+      command: chdir=nagioscore-nagios-4.4.6 {{ item }}
+      with_items:
+        - make install
+        - make install-daemoninit
+        - make install-commandmode
+        - make install-config
+        - make install-webconf
+      become: true
+     
+    - name: "Enable the Apache rewrite and cgi modules"
+      shell: chdir=nagioscore-nagios-4.4.6 {{ item }}
+      with_items:
+        - a2enmod rewrite
+        - a2enmod cgi
+        - usermod -a -G nagios www-data
+      become: true
+      
+    - name: "Create web acces user(nagiosadmin pass=Icap@123)"
+      command: chdir=nagioscore-nagios-4.4.6 htpasswd -cb /usr/local/nagios/etc/htpasswd.users nagiosadmin Icap@123
+      become: true
+      
+    - name: "Download plugins"
+      shell: curl -L -O http://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz;tar zxf nagios-plugins-2.2.1.tar.gz;      
+      become: false
+      
+    - name: "Build plugins"
+      command: chdir=nagios-plugins-2.2.1 {{ item }}
+      with_items:
+        - ./configure
+        - make
+      register: "output"
+    - debug: var=output.stdout_lines
+      become: false
+      
+    - name: "Build plugins with sudoer"
+      shell: chdir=nagios-plugins-2.2.1 make install
+      become: true
+      
+    
+    - name: "Install nagios plugin prerequisites"
+      apt: 
+       name: 
+        - libwww-perl
+       state: latest
+       force: true
+       update_cache: true
+      become: true
+  
+    - name: "Transfer slack.pl and check_service to plugings directory"
+      command: "{{ item }}"
+      with_items:
+        - cp slack.pl /usr/local/nagios/libexec/
+        - cp check_service /usr/local/nagios/libexec/   
+        - chmod +x /usr/local/nagios/libexec/slack.pl /usr/local/nagios/libexec/check_service
+      become: true
+      
+    - name: "Copy apache2 config files to apache2 directory"
+      command: "{{ item }}"
+      with_items:
+        - cp ports.conf apache2.conf /etc/apache2/
+        - cp 000-default.conf /etc/apache2/sites-enabled/
+      become: true
+      
+    - name: "Copy config files to nagios directory"
+      command: "{{ item }}"
+      with_items:
+        - cp commands.cfg localhost.cfg contacts.cfg slack.cfg /usr/local/nagios/etc/objects/
+        - cp nagios.cfg /usr/local/nagios/etc/
+      become: true
+      
+    - name: "Restart apache2 and nagios"
+      command: "{{ item }}"
+      with_items:
+        - systemctl restart apache2.service
+        - systemctl restart nagios.service
+      become: true
+      
+      
+      
+      
+      
+    
+    
+    #- name: "install apache2"
+     #apt: name=apache2 update_cache=yes state=latest
