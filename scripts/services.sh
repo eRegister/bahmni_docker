@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 # Proper header for a Bash script.
 # comment and uncomment set -v for debugging
 # set -v
@@ -209,8 +209,19 @@ cd /home/openmrs/bahmni_docker/scripts
  sudo systemctl start gitpull_outgoingmessage.service
  sudo systemctl start gitpull_dhisconnector.service
 
+ #Sending backup scripts to bin directory
+ sudo cp onedriveupload.sh /usr/local/bin
+ sudo cp mysqlbackup.sh /usr/local/bin
+
  
  #All files from git should be available in all the persistant volumes
 
 
+#Configure hie file
+sudo bash ./hie_config.sh
 
+#Install rclone for onedrive upload
+sudo bash ./install_rclone.sh
+
+#Install nagios
+sudo bash ../nagios-ansible/install_nagios.sh
