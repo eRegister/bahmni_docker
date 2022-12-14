@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"nginx.ingress.kubernetes.io/rewrite-target":"/$1"},"name":"example-ingress","namespace":"default"},"spec":{"rules":[{"host":"hello-world.info","http":{"paths":[{"backend":{"service":{"name":"web","port":{"number":8080}}},"path":"/","pathType":"Prefix"}]}}]}}
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  creationTimestamp: "2022-12-10T18:06:23Z"
+  generation: 1
+  name: example-ingress
+  namespace: default
+  resourceVersion: "891046"
+  uid: d2b0487b-345a-453c-ae72-1cb32cdf98ad
+spec:
+  ingressClassName: public
+  rules:
+  - host: hello-world.info
+    http:
+      paths:
+      - backend:
+          service:
+            name: web
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 127.0.0.1
