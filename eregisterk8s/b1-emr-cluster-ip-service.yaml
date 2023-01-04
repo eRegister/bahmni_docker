@@ -3,11 +3,9 @@ kind: Service
 metadata:
   name: emr-cluster-ip-service
 spec:
-  type: ClusterIP
   selector:
     component: emr
   ports:
-    - name: http
-      protocol: TCP
-      port: 443
-      targetPort: 443
+  - protocol: TCP
+    port: 443
+    targetPort: 443

@@ -13,17 +13,17 @@ spec:
         component: emr
     spec:
       volumes:
-        - name: emr-storage
-          persistentVolumeClaim:
-            claimName: emr-persistent-volume-claim
+      - name: emr-storage
+        persistentVolumeClaim:
+          claimName: emr-persistent-volume-claim
       containers:
-        - name: eregister-emr
-          image: omrsregrepo/bahmni_092_emr:18012021
-          securityContext:
-            privileged: true
-          command: [/usr/sbin/init, /bin/bash, "--privileged"]
-          ports:
-            - containerPort: 443
-            - containerPort: 80
-            - containerPort: 8000
-            - containerPort: 8050
+      - name: eregister-emr
+        image: omrsregrepo/bahmni_092_emr:01032021
+        securityContext:
+          privileged: true
+        command: [/usr/sbin/init, /bin/bash, "--privileged"]
+        ports:
+          - containerPort: 443
+          - containerPort: 80
+          - containerPort: 8000
+          - containerPort: 8050
