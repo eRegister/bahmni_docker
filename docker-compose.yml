@@ -30,7 +30,7 @@ services:
         ipv4_address: 172.27.0.3
 
   erp-service:
-    image: omrsregrepo/bahmni_092_erp:01032021                                                                                                                                                                                                                                                                  
+    image: omrsregrepo/bahmni_092_erp:groupF                                                                                                                                                                                                                                                                  
     privileged: true
     restart: always
     volumes:
