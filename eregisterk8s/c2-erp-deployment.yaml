@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: eregister-erp-deployment
 spec:
-  replicas: 1
+  replicas: 2 
   selector:
     matchLabels:
       component: erp
@@ -16,11 +16,19 @@ spec:
       - name: erp-storage
         persistentVolumeClaim:
           claimName: erp-persistent-volume-claim
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: node.kubernetes.io/microk8s-worker
+        whenUnsatisfiable: ScheduleAnyway
       containers:
       - name: eregister-erp
-        image: omrsregrepo/bahmni_092_erp:01032021
+        image: omrsregrepo/erp_base_groupf:01092021
+        imagePullPolicy: Never
         securityContext:
           privileged: true
         command: [/usr/sbin/init, /bin/bash, "--privileged"]
         ports:
         - containerPort: 8069
+        volumeMounts:
+        - name: erp-storage
+          mountPath: /development/

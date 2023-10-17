@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   name: eregister-emr-deployment
 spec:
-  replicas: 1
-  selector:
+  replicas: 2
+  selector: 
     matchLabels:
       component: emr
   template:
@@ -16,9 +16,14 @@ spec:
       - name: emr-storage
         persistentVolumeClaim:
           claimName: emr-persistent-volume-claim
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: node.kubernetes.io/microk8s-worker
+        whenUnsatisfiable: ScheduleAnyway
       containers:
       - name: eregister-emr
         image: omrsregrepo/bahmni_092_emr:01032021
+        imagePullPolicy: Never
         securityContext:
           privileged: true
         command: [/usr/sbin/init, /bin/bash, "--privileged"]
@@ -27,3 +32,6 @@ spec:
           - containerPort: 80
           - containerPort: 8000
           - containerPort: 8050
+        volumeMounts:
+        - name: emr-storage
+          mountPath: /development/

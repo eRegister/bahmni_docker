@@ -4,7 +4,10 @@ metadata:
   name: erp-persistent-volume-claim
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 2Gi
+  volumeMode: Filesystem
+  storageClassName: eregister-storage-class
+  volumeName: erp-persistent-volume

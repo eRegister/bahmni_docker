@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: erp-persistent-volume
+spec:
+  storageClassName: eregister-storage-class
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 2Gi
+  hostPath:
+    path: /development_erp
