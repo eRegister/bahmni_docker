@@ -4,29 +4,31 @@ metadata:
   name: nginx-ingress-service
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-  namespace: default  
+    nginx.ingress.kubernetes.io/use-node-hostname: "true"
+    #    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    #  namespace: default  
 spec:
-  tls:
-  - hosts:
-    - eregister.ls
-    secretName: nginx-ingress-tls
+        #  tls:
+        #  - hosts:
+        #    - eregister.ls
+        #    secretName: nginx-ingress-tls
+  ingressClassName: nginx
   rules:
   - host: eregister.ls
     http:
-      paths:      
-      - backend:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
           service:
             name: emr-cluster-ip-service
             port: 
-              number: 443
-        path: /
-        pathType: Prefix
+              number: 80
       
-      - backend:
-          service:
-            name: erp-cluster-ip-service
-            port: 
-              number: 8069
-        path: /odoo
-        pathType: Prefix
+        #      - backend:
+        #          service:
+        #            name: erp-cluster-ip-service
+        #            port: 
+        #              number: 8069
+        #        path: /odoo
+        #        pathType: Prefix
