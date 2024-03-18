@@ -1,3 +1,4 @@
+#edit
 #!/usr/bin/env bash
 export container_name=openmrseregister
 # update bind_mount_src
