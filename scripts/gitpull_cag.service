@@ -1,0 +1,17 @@
+[Unit]
+Description=Bahmni continuous deployment
+After=docker.service
+
+
+
+[Service]
+WorkingDirectory=/development_emr/openmrs-module-cag-release
+ExecStart=/development_emr/openmrs-module-cag-release/gitpull_cag.sh
+
+
+User=openmrs
+RestartSec=604800
+
+
+[Install]
+WantedBy=default.target
