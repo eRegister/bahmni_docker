@@ -32,6 +32,10 @@ if [ ! -d "/development_emr/openmrs-module-*" ] || [ ! -d "/development_emr/bahm
     echo "openmrs-module-registrationcore-release folder created"
 	mkdir -p /development_emr/openmrs-module-dhisconnector-release
     echo "openmrs-module-registrationcore-release folder created"
+    mkdir -p /development_emr/openmrs-module-cag-release/
+    echo "openmrs-module-cag-release folder created"
+    mkdir -p /development_emr/openmrs-module-appointmentSync-release/
+    echo "openmrs-module-appointmentSync-release folder created"
     
 fi
 #---------------------------------------------------------------------#
@@ -83,7 +87,14 @@ fi
  cd /development_emr/openmrs-module-dhisconnector-release/
  sudo git init
  sudo git remote add origin https://github.com/eRegister/openmrs-module-dhisconnector-release.git
+
+ cd /development_emr/openmrs-module-appointmentSync-release/
+ sudo git init
+ sudo git remote add origin https://github.com/eRegister/openmrs-module-appointmentSync-release.git
  
+ cd /development_emr/openmrs-module-cag-release/
+ sudo git init
+ sudo git remote add origin https://github.com/eRegister/openmrs-module-cag-release.git
  
  
 #Pull from the remote eRegister repo's and creates services for automated deployement 
@@ -145,6 +156,19 @@ cd /home/openmrs/bahmni_docker/scripts
  sudo cp gitpull_dhisconnector.sh /development_emr/openmrs-module-dhisconnector-release/
  sudo chmod +x /development_emr/openmrs-module-dhisconnector-release/gitpull_dhisconnector.sh
  sudo chmod 664 /etc/systemd/system/gitpull_dhisconnector.service
+
+
+
+ sudo cp gitpull_cag.service /etc/systemd/system/
+ sudo cp gitpull_cag.sh /development_emr/openmrs-module-cag-release/
+ sudo chmod +x /development_emr/openmrs-module-cag-release/gitpull_cag.sh
+ sudo chmod 664 /etc/systemd/system/gitpull_cag.service
+
+
+ sudo cp gitpull_appointmentSync.service /etc/systemd/system/
+ sudo cp gitpull_appointmentSync.sh /development_emr/openmrs-module-appointmentSync-release/
+ sudo chmod +x /development_emr/openmrs-module-appointmentSync-release/gitpull_appointmentSync.sh
+ sudo chmod 664 /etc/systemd/system/gitpull_appointmentSync.service
  
  
  #Copy omod files to container OpenMRS operating modules (opt/OpenMRS/modules)
@@ -177,6 +201,8 @@ cd /home/openmrs/bahmni_docker/scripts
  sudo chown openmrs:openmrs /etc/systemd/system/gitpull_concepts.service
  sudo chown openmrs:openmrs /etc/systemd/system/gitpull_outgoingmessage.service
  sudo chown openmrs:openmrs /etc/systemd/system/gitpull_dhisconnector.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_cag.service
+ sudo chown openmrs:openmrs /etc/systemd/system/gitpull_appointmentSync.service
  
  #Loading system daemon and enabling services
  
@@ -193,6 +219,8 @@ cd /home/openmrs/bahmni_docker/scripts
  sudo systemctl enable gitpull_concepts.service
  sudo systemctl enable gitpull_outgoingmessage.service
  sudo systemctl enable gitpull_dhisconnector.service
+ sudo systemctl enable gitpull_cag.service
+ sudo systemctl enable gitpull_appointmentSync.service
  
  #Starting services
 
@@ -208,6 +236,9 @@ cd /home/openmrs/bahmni_docker/scripts
  sudo systemctl start gitpull_concepts.service
  sudo systemctl start gitpull_outgoingmessage.service
  sudo systemctl start gitpull_dhisconnector.service
+
+ sudo systemctl start gitpull_cag.service
+ sudo systemctl start gitpull_appointmentSync.service
 
  #Sending backup scripts to bin directory
  sudo cp onedriveupload.sh /usr/local/bin
