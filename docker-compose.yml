@@ -29,19 +29,19 @@ services:
       hmis_network:
         ipv4_address: 172.27.0.3
 
-  erp-service:
-    image: omrsregrepo/bahmni_092_erp:groupF                                                                                                                                                                                                                                                                  
-    privileged: true
-    restart: always
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - /development_erp:/development
-    command: [/usr/sbin/init, /bin/bash, "--privileged"]
-    ports:
-      - "8069:8069" #odoo lives here
-    networks:
-      hmis_network:
-        ipv4_address: 172.27.0.2
+  # erp-service:
+  #   image: omrsregrepo/bahmni_092_erp:groupF                                                                                                                                                                                                                                                                  
+  #   privileged: true
+  #   restart: always
+  #   volumes:
+  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  #     - /development_erp:/development
+  #   command: [/usr/sbin/init, /bin/bash, "--privileged"]
+  #   ports:
+  #     - "8069:8069" #odoo lives here
+  #   networks:
+  #     hmis_network:
+  #       ipv4_address: 172.27.0.2
 
 networks:
   hmis_network:
