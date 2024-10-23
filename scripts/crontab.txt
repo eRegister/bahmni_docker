@@ -1,0 +1,54 @@
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+00 15,18 * * * sudo systemctl restart mysqlbackup.service
+30 18 * * fri systemctl restart onedriveupload.service
+30 18 * * mon,tue,wed,thu,fri systemctl restart gdriveupload.service
+
+#40 15,18 * * * sudo bash /usr/local/bin/odoobackup-daily.sh
+
+00 7 * * 1 sudo systemctl restart gitpull_appointments.service >> /var/log/gitpull_appointments.log
+05 7 * * 1 sudo systemctl restart gitpull_bahmniapps.service >> /var/log/gitpull_bahmniapps.log
+10 7 * * 1 sudo systemctl restart gitpull_bahmniconfig.service >> /var/log/gitpull_bahmniconfig.log
+15 7 * * 1 sudo systemctl restart gitpull_concepts.service >> /var/log/gitpull_concepts.log
+20 7 * * 1 sudo systemctl restart gitpull_dhisconnector.service >> /var/log/gitpull_dhisconnector.log
+25 7 * * 1 sudo systemctl restart gitpull_mappings.service >> /var/log/gitpull_mappings.log
+30 7 * * 1 sudo systemctl restart gitpull_outgoingmessage.service >> /var/log/gitpull_outgoingmessage.log
+35 7 * * 1 sudo systemctl restart gitpull_registrationcore.service >> /var/log/gitpull_registrationcore.log
+40 7 * * 1 sudo systemctl restart gitpull_serializedobject.service >> /var/log/gitpull_serializedobject.log
+45 7 * * 1 sudo systemctl restart gitpull_xdssender.service >> /var/log/gitpull_xdssender.log
+50 7 * * 1 sudo systemctl restart gitpull_bahmnicore.service >> /var/log/gitpull_bahmnicore.log
+
+00 8 * * 1 sudo bash /usr/local/bin/concepts_restore.sh
+05 8 * * 1 sudo bash /usr/local/bin/serializedobject_restore.sh
+
+00 8 * * 1 sudo systemctl restart modules.service >> /var/log/modules.log
+#00 13 1 * * sudo bash /usr/local/cleanup.sh
+0 7 * * mon sudo systemctl restart outgoingmessageexceptions_message.service
+45 04 * * * sudo reboot now
+
+42 * * * * sudo python3 /usr/local/bin/location4.py
+43 * * * * systemctl restart SerialNumber.service
+*/1 * * * * python3 /home/openmrs/openmrs-openshr-utils/main_shr_missing_obs.py >> /var/log/missing_shr_obs.log 2>&1 
+*/2 * * * * python3 /home/openmrs/openmrs-openshr-utils/main_shr_missing_patients.py >> /var/log/missing_shr_patients.log 2>&1
+30 07 24,25,26,27,28,29,30 * * bash /usr/local/bin/install_cert.sh
