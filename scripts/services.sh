@@ -204,6 +204,10 @@ cd /home/openmrs/bahmni_docker/scripts
  sudo chown openmrs:openmrs /etc/systemd/system/gitpull_cag.service
  sudo chown openmrs:openmrs /etc/systemd/system/gitpull_appointmentSync.service
  
+ #Change ownership of persistent volumes from root to openmrs so that all services owned by openmrs run properly
+ sudo chown -R openmrs:openmrs /development_emr
+ sudo chown -R openmrs:openmrs /development_erp
+ 
  #Loading system daemon and enabling services
  
  sudo systemctl daemon-reload
