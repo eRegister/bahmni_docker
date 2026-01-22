@@ -36,6 +36,8 @@ services:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /development_erp:/development
+      - /development_erp/odoo_addons:/development/odoo_addons
+      - /development_erp/bahmni_addons:/development/bahmni_addons
     command: [/usr/sbin/init, /bin/bash, "--privileged"]
     ports:
       - "8069:8069" #odoo lives here
