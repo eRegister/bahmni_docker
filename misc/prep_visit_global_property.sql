@@ -1,0 +1,6 @@
+INSERT INTO global_property (property, property_value, description, uuid)
+SELECT 'emrapi.sqlSearch.prepdrugpickup', 
+       'select distinct concat(pn.given_name,'' '', ifnull(pn.family_name,'''')) as name, pi.identifier as identifier, concat("",p.uuid) as uuid, concat("",v.uuid) as activeVisitUuid, IF(va.value_reference = "Admitted", "true", "false") as hasBeenAdmitted from visit v join person_name pn on v.patient_id = pn.person_id and pn.voided = 0 join patient_identifier pi on v.patient_id = pi.patient_id join patient_identifier_type pit on pi.identifier_type = pit.patient_identifier_type_id join global_property gp on gp.property="bahmni.primaryIdentifierType" and gp.property_value=pit.uuid join person p on p.person_id = v.patient_id join encounter en on en.visit_id = v.visit_id and en.voided=0 join location l on l.uuid = ${visit_location_uuid} and v.location_id = l.location_id left outer join visit_attribute va on va.visit_id = v.visit_id and va.attribute_type_id = (select visit_attribute_type_id from visit_attribute_type where name="Admission Status") and va.voided = 0 where v.date_stopped is null and v.visit_type_id = 25 order by en.encounter_datetime asc;',
+       'SQL search for PREP drug pickup visits',
+       UUID()
+WHERE NOT EXISTS (SELECT 1 FROM global_property WHERE property = 'emrapi.sqlSearch.prepdrugpickup');
